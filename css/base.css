@@ -1,0 +1,76 @@
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+em,
+i {
+    font-style: normal;
+}
+li {
+    list-style: none;
+}
+
+img {
+    border: 0;
+    vertical-align: middle;
+}
+
+button {
+    cursor: pointer;
+}
+
+a {
+    color: #000;
+    text-decoration: none
+}
+
+
+button,
+input {
+    border:0;
+    outline: none;
+}
+
+body {
+    height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    font-family: 'Nunito', sans-serif,  Microsoft YaHei, Heiti SC;
+    color: rgba(228, 237, 245, 0.932);
+}
+
+.hide,
+.none {
+    display: none
+}
+
+/* clear  floot */
+.clearfix:after {
+    visibility: hidden;
+    clear: both;
+    display: block;
+    content: ".";
+    height: 0
+}
+
+.clearfix {
+    *zoom: 1
+}
+
+
+.material-symbols-rounded {
+  font-variation-settings:
+  'FILL' 1,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
+}
+
+
+
+
+
+
+
