@@ -1,1 +1,20 @@
-# MusicPlayer
+# Music Player
+A Basic Music Player that can use to listen music
+# Objective
+Useing CSS, HTML to build the music player performance, useing JavaScript to achieve the basic functions of the music player. 
+# Features
+- Next/Previous song
+- Pick song from list
+- Simulated music data
+- Loop and mute play
+- Responsive webpage
+## Tech
+- Pause, loop, mute play
+- next and previous song
+- Playlist
+- Draggable progress bar
+- Progress bar timer
+
+## Demo
+  ### Uphead Main Page/mobile                                                           
+![image](https://github.com/AuroraDai/Calender/blob/main/gif/calen.gif)
