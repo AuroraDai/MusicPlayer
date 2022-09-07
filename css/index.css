@@ -1,11 +1,4 @@
-/* 
-#bd_img{
-   position:absolute;
-   top: 0;
-   left: 0;
-   height: 100vh;
-    width: 100%;
-} */
+
 body{
     background:url(../img/bg8.jpg) no-repeat center;
     background-size:cover;
@@ -183,5 +176,24 @@ body{
 }
 .imgRotate{
     animation: imgRotate 10s infinite linear forwards;
+}
+
+@media screen and (max-width: 450px) {
+    .card {
+        height: 550px;
+        width: 350px;
+    }
+    .mImg {
+        height: 15rem;
+        width: 15rem;
+        margin-left: 25px;
+    }
+    
+    .mImg img {
+        border-radius: 50%;
+    }
+    .prograss{
+        margin-top: 30px;
+    }
 }
 
