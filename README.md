@@ -17,4 +17,4 @@ Useing CSS, HTML to build the music player performance, useing JavaScript to ach
 
 ## Demo
   ### Uphead Main Page/mobile                                                           
-![image](https://github.com/AuroraDai/Calender/blob/main/gif/calen.gif)
+![image](https://github.com/AuroraDai/MusicPlayer/blob/main/gif/musicPlayer.gif)
