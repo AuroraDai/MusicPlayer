@@ -15,6 +15,5 @@ Useing CSS, HTML to build the music player performance, useing JavaScript to ach
 - Draggable progress bar
 - Progress bar timer
 
-## Demo
-  ### Uphead Main Page/mobile                                                           
+## Demo                                                        
 ![image](https://github.com/AuroraDai/MusicPlayer/blob/main/gif/musicPlayer.gif)
