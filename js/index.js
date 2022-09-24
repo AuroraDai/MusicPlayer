@@ -4,9 +4,11 @@ let musicIndex = 1;
 window.addEventListener('load', () => {
     loadMusic(musicIndex);
 })
+
 //load music
 //index ~  musicIndex
 function loadMusic(index) {
+    //we set the musicIndex  = 1, but the arry index start at 0 . so to get to the first song , have to -1
     $('.mInfo .mName').html(allMusic[index - 1].name)
     $('.mInfo .artist').html(allMusic[index - 1].artist)
     $('.mImg img').attr('src', `img/${allMusic[index - 1].img}.jpeg`)
@@ -15,6 +17,13 @@ function loadMusic(index) {
 
 }
 
+//insert song list
+let ul_list = document.querySelector('.ul_list');
+for (var i = 0; i < allMusic.length; i++) {
+    ul_list.innerHTML += `<li index=${i + 1}>
+                          <span class="music_name">${allMusic[i].name} - ${allMusic[i].artist}</span>
+                          </li>`;
+}
 
 
 //play/pause events
@@ -24,16 +33,19 @@ function playMusic() {
     current_audio.play()
     isPlay = false;
     $('#play').html('pause_circle')
-  
+
 }
 function pauseMusic() {
     current_audio.pause();
     isPlay = true;
     $('#play').html('play_circle')
-   
 
 }
 
+//animation of img-roatae
+function imgRotate() {
+    isPlay ? $('.mImg img').addClass('imgRotate') : $('.mImg img').removeClass('imgRotate');
+}
 $('.play_pause').click(() => {
     imgRotate();
     isPlay ? playMusic() : pauseMusic();
@@ -52,6 +64,7 @@ function nextMusic() {
 
 function prevMusic() {
     musicIndex--;
+    //if music Index is less than 1 then go to the last song of the list
     musicIndex < 1 ? musicIndex = allMusic.length : musicIndex
     //have to load the music funtion again in order to change music
     loadMusic(musicIndex);
@@ -64,16 +77,19 @@ $('#next').click(() => {
     nextMusic()
 })
 
+
+
 //progress bar && the progress timer
 var current_audio = document.querySelector('#current_audio')
 //The timeUpdate event is emitted when the audio/video playback position changes. 
 // This property returns the audio/video playback position in seconds. 
 current_audio.addEventListener('timeupdate', (e) => {
-   
+
     //music current time of the song
     let currentTimes = e.target.currentTime;
     //music Total audio time of the song
     let duration = e.target.duration;
+    //the width of the progress bar already process. 
     let progressWidth = (currentTimes / duration) * 100;
     $('#current_prograss').css('width', `${progressWidth}%`);
 
@@ -86,7 +102,8 @@ current_audio.addEventListener('timeupdate', (e) => {
     $('.current').text(currentMin + ':' + currentSec)
 
     //loaded the duration time first while the song does not fully loaded yet
-    // The loadeddata event is fired when the frame at the current playback position of the media has finished loading; often the first frame.
+    // The loadedData event is triggered when the frame at the current playback position has finished loading, but there is not enough data to play the next frame of the specified audio;Usually the first frame.
+    //make sure the song is still playing, before fully loading the page and data
     current_audio.addEventListener("loadeddata", () => {
         //current song's total duration timer
         let audioDuration = current_audio.duration;
@@ -96,16 +113,17 @@ current_audio.addEventListener('timeupdate', (e) => {
             totalSec = '0' + totalSec;
         }
         $('.total_duration').html(totalMin + ':' + totalSec)
-      
+
 
     })
     // if the song has finished, go next 
     if (current_audio.currentTime === current_audio.duration && $('#repeat').html('repeat')) {
         nextMusic();
     }
-   
+
 })
 //progess bar click event
+
 // currentTime       clickedOffSetX
 // ------------  =   ---------------
 // songDuration          barWidth
@@ -124,10 +142,11 @@ bar.addEventListener('click', (e) => {
 
 })
 
+
 // repeat click event
-let repeat = document.querySelector('#repeat')
 $('#repeat').click(() => {
     switch ($('#repeat').html()) {
+
         case 'repeat':
             $('#repeat').html('repeat_one')
             //when click repeat, current_audio will setAttribute loop
@@ -139,6 +158,7 @@ $('#repeat').click(() => {
                 playMusic();
             })
             break;
+
         case 'repeat_one':
             $('#repeat').html('repeat');
             //when click repeat again, current_audio will removeAttribute loop
@@ -165,20 +185,16 @@ $('#volume_up').click(() => {
     }
 })
 
-//animation of img-roatae
-function imgRotate() {
-  
-    isPlay ? $('.mImg img').addClass('imgRotate'): $('.mImg img').removeClass('imgRotate') ;
-}
+
 
 //expand more -- music list
 let isExpand = true;
-$('#expand_more').click(()=>{
-    if(isExpand){
-         $('#expand_more').html('close');
-         $('.list_dropdown').slideToggle('.list_dropdown');
+$('#expand_more').click(() => {
+    if (isExpand) {
+        $('#expand_more').html('close');
+        $('.list_dropdown').slideToggle('.list_dropdown');
         isExpand = false;
-    }else {
+    } else {
         $('#expand_more').html('expand_more');
         $('.list_dropdown').slideToggle('.list_dropdown');
         isExpand = true;
@@ -186,19 +202,10 @@ $('#expand_more').click(()=>{
 })
 
 
-//insert song list
-let ul_list = document.querySelector('.ul_list');
-for(var i = 0; i < allMusic.length; i++){
-    ul_list.innerHTML += `<li index=${i+1}>
-                    <span class="music_name">${allMusic[i].name} - ${allMusic[i].artist}</span>
-              </li>`;
-}
-
-
 // click song to play
 let lis = ul_list.querySelectorAll('li');
-for(let l = 0; l <lis.length; l++){
-    lis[l].addEventListener('click',function(){
+for (let l = 0; l < lis.length; l++) {
+    lis[l].addEventListener('click', function () {
         let index = lis[l].getAttribute('index');
         musicIndex = index
         loadMusic(musicIndex);
@@ -208,11 +215,11 @@ for(let l = 0; l <lis.length; l++){
         $('#expand_more').html('expand_more');
         $('.list_dropdown').slideToggle('.list_dropdown');
         isPlay = false;
-        
 
-})
+
+    })
 }
 
 
-    
+
 
